@@ -1,6 +1,6 @@
 const Folder = require("../model/folder");
 
-const saveToFolder = async (req, res) => {
+const saveToFriends = async (req, res) => {
     try {
         const {name, email, phone, github, linkedin, otherlink} = req.body;
 
@@ -17,13 +17,13 @@ const saveToFolder = async (req, res) => {
         if(newFile) {
             return res.status(200).json({
                 success : true,
-                message : `Friend's file saved to Folder successfully.`,
+                message : `Friend is saved to Friends successfully.`,
                 file : newFile
             });
         } else {
             return res.status(401).json({
                 success : false,
-                message : `Oops! Unable to create friend's file.`
+                message : `Failed to save to Friends`
             });
         }        
 
@@ -32,13 +32,13 @@ const saveToFolder = async (req, res) => {
         
         res.status(500).json({
             success : false,
-            message : `Failed to create file`,
+            message : `Failed to save to Friends.`,
             error
         })
     }
 };
 
-const getFiles = async (req, res) => {
+const getFriends = async (req, res) => {
     try {
         const {userId} = req.body;
 
@@ -53,20 +53,20 @@ const getFiles = async (req, res) => {
         } else {
             return res.status(401).json({
                 success : false,
-                message : `Oops! Unable to retrieve files.`
+                message : `Oops! Unable to retrieve friends.`
             });
         }
 
     } catch (error) {
         res.status(500).json({
             success : false,
-            message : `Failed to get file`,
+            message : `Failed to get friends`,
             error
         })
     }
 }
 
-const deleteFile = async (req, res) => {
+const deleteFriend = async (req, res) => {
     try {
         const fileId = req.params.id;
 
@@ -93,4 +93,4 @@ const deleteFile = async (req, res) => {
     }
 }
 
-module.exports = {saveToFolder, getFiles, deleteFile};
+module.exports = {saveToFriends, getFriends, deleteFriend};

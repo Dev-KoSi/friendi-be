@@ -12,20 +12,20 @@ const addDetails = async (req, res) => {
 
         res.status(200).json({
             success : true,
-            message : `Details added successfully :)`,
+            message : `Details added successfully.:)`,
             details : updateDetails.details
         });
         
     } catch (error) {
         res.status(500).json({
             success : false,
-            message : `Failed to add details`,
+            message : `Failed to add details.`,
             error
         })
     }
 };
 
-const addId = async (req, res) => {
+const changeId = async (req, res) => {
     try {
         const userId = req.params.id;
         const {id} = req.body;
@@ -35,7 +35,7 @@ const addId = async (req, res) => {
         if(checkId) {
             return res.status(401).json({
                 success : false,
-                message : `Sorry, this ID is already taken!!`,
+                message : `Sorry, this ID is already taken.`,
                 id : checkId.id
             });
         }
@@ -45,13 +45,13 @@ const addId = async (req, res) => {
         if(updateId) {
             res.status(200).json({
                 success : true,
-                message : `ID added successfully :)`,
+                message : `ID changed successfully.`,
                 id : id
             })
         } else {
             res.status(401).json({
                 success : false,
-                message : `Sorry, somethng went wrong adding ID!`,
+                message : `Sorry, somethng went wrong changing ID.`,
                 id : checkId.id
             });
         }
@@ -59,7 +59,7 @@ const addId = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success : false,
-            message : `Failed to add ID`,
+            message : `Failed to change ID, please try again.`,
             error
         })
     }
@@ -74,7 +74,7 @@ const retrieveDetails = async (req, res) => {
         if(checkId) {
             res.status(200).json({
                 success : true,
-                message : `friend's details retrieved successfully!`,
+                message : `Friend's details retrieved successfully.`,
                 details : checkId.details
             });
         } else {
@@ -86,10 +86,10 @@ const retrieveDetails = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success : false,
-            message : `Failed to add ID`,
+            message : `Failed to retrieve details`,
             error
         })
     }
 };
 
-module.exports = {addDetails, addId, retrieveDetails};
+module.exports = {addDetails, changeId, retrieveDetails};

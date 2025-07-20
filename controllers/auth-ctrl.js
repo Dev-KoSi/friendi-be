@@ -20,7 +20,7 @@ const signup = async (req, res) => {
         if(!validator.isEmail(email)) {
             return res.status(400).json({
                 success : false,
-                message : `Invalid email, try again!`
+                message : `Invalid email, please try again.`
             })
         }
 
@@ -29,7 +29,7 @@ const signup = async (req, res) => {
         if(checkExistingUser) {
             return res.status(400).json({
                 success : false,
-                message : `User is already registered !!`
+                message : `User is already registered, please log in.`
             });
         }
 
@@ -59,7 +59,7 @@ const signup = async (req, res) => {
         } else {
             res.status(400).json({
                 success : false,
-                message : `Unable to register user!!, please try again.`
+                message : `Unable to register user, please try again.`
             });
         }
     } catch (error) {
@@ -80,7 +80,7 @@ const login = async (req, res) => {
         if(!checkUser) {
             return res.status(400).json({
                 success : false,
-                message : `User does not exist! Please sign up.`
+                message : `User does not exist, please sign up.`
             });
         }
 
@@ -89,7 +89,7 @@ const login = async (req, res) => {
         if(!checkPassword) {
             return res.status(400).json({
                 success : false,
-                message : `Wrong password!! `
+                message : `Wrong password. `
             });
         }
 
@@ -104,7 +104,7 @@ const login = async (req, res) => {
 
         res.status(200).json({
             success : true,
-            message : `Log in successful!! You are welcome :)`,
+            message : `Logged in successfully, you are welcome.`,
             email : checkUser.email,
             accessToken,
             userId : checkUser._id,
@@ -115,7 +115,7 @@ const login = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success : false,
-            message : `Something went wrong, try again :(`,
+            message : `Something went wrong, please try again.`,
             error : error
         })
     }
