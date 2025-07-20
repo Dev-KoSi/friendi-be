@@ -2,6 +2,8 @@ const User = require('../model/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const validator = require('validator');
+const { v4: uuidv4 } = require('uuid');
+console.log(uuidv4())
 
 
 const signup = async (req, res) => {
@@ -12,6 +14,8 @@ const signup = async (req, res) => {
 
     try {
         const {email, password} = req.body;
+
+        const uniqueId = uuidv4();
 
         if(!validator.isEmail(email)) {
             return res.status(400).json({
@@ -41,6 +45,7 @@ const signup = async (req, res) => {
         const hashPassword = await bcrypt.hash(password, salt);
 
         const newlyCreatedUser = await User.create({
+            id : uniqueId,
             email,
             password : hashPassword
         });
@@ -90,6 +95,7 @@ const login = async (req, res) => {
 
         const accessToken = await jwt.sign({
             userId : checkUser._id,
+            uniqueId : checkUser.id,
             email : checkUser.email,
             password : checkUser.password
         }, process.env.JWT_SECRET_KEY, {
