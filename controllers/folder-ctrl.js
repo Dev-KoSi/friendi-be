@@ -75,19 +75,19 @@ const deleteFriend = async (req, res) => {
         if(delFile) {
             res.status(200).json({
                 success : true,
-                message : `File deleted successfully.`,
+                message : `Friend deleted successfully.`,
                 delFile
             })
         } else {
             res.status(400).json({
                 success : false,
-                message : `Failed to delete file, please try again.`
+                message : `Failed to delete friend, please try again.`
             })
         }
     } catch (error) {
         res.status(500).json({
             success : false,
-            message : `Failed to delete file`,
+            message : `Failed to delete friend, please try again.`,
             error
         })
     }
