@@ -4,7 +4,7 @@ const authMiddleware = require('../middleware/auth-middleware');
 const homeRouter = express.Router();
 
 homeRouter.get('/home', authMiddleware, (req,res) => {
-    const {email, password, userId, uniqueId} = req.userInfo;
+    const {email, userId, uniqueId} = req.userInfo;
 
     res.status(200).json({
         success : true,
